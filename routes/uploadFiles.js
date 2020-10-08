@@ -4,7 +4,7 @@ const multer = require("multer") ;
 const router = express.Router();
 const mongoose = require('mongoose');
 const GridFsStorage = require('multer-gridfs-storage')
-const MONGOURI = "mongodb+srv://dbKrishna:Kri75676@cluster0-9vtky.mongodb.net/uploaded-files?retryWrites=true&w=majority";
+const MONGOURI = "mongodb+srv://<Username>:<password>@cluster0-9vtky.mongodb.net/<DB-Name>?retryWrites=true&w=majority";
 const promise = require('promise');
 var crypto = require('crypto');
 var mongoD = require("../config/db");
@@ -94,32 +94,32 @@ router.post('/uploadedFiles',upload.single('file'), (req,res) => {
    res.redirect('/')
 } )
 
-// router.get('/image/:filename', (req,res) => {
-//     const file = gfg.find({filename : req.params.filename} )
-//                     .toArray((err,files) => {
-//                         if(!files || files.length === 0 )
-//                         {
-//                           return res.status(404).json({
-//                                 err : "No such file exist"
-//                             })
-//                         }
-//                         gfg.openDownloadStreamByName(req.params.filename).pipe(res);
-//                     } )
-//      } )
-// router.post('/file/del/:id', (err,res) => {
-//     gfg.delete(mongoose.Types.ObjectId(req.params.id), (err,res) => {
-//         if(err)
-//         {
-//             res.status(404).json({
-//                 err : err.message
-//             })
-//         }
-//         else
-//         {
-//             res.status(200).send("File Deleted")
-//         }
-//     } )
-// } )
+ router.get('/image/:filename', (req,res) => {
+     const file = gfg.find({filename : req.params.filename} )
+                     .toArray((err,files) => {
+                         if(!files || files.length === 0 )
+                          {
+                           return res.status(404).json({
+                                 err : "No such file exist"
+                             })
+                         }
+                        gfg.openDownloadStreamByName(req.params.filename).pipe(res);
+                     } )
+      } )
+ router.post('/file/del/:id', (err,res) => {
+     gfg.delete(mongoose.Types.ObjectId(req.params.id), (err,res) => {
+         if(err)
+         {
+            res.status(404).json({
+                 err : err.message
+             })
+         }
+         else
+         {
+             res.status(200).send("File Deleted")
+         }
+     } )
+ } )
 
 module.exports = router;
 

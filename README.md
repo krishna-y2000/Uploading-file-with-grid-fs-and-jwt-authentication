@@ -6,7 +6,7 @@ Setup your the mongodb atlas and make changes in file " /config/db.js" and  /rou
 Enter the command \
 step 2 : 
 ```
-npm install
+npm install multer multer-gridfs-storage promise
 ```
 step 3:
 ```
